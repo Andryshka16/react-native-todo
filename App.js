@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Navbar from "./components/Navbar";
+import Form from "./components/Form";
+import {useState} from "react";
+import Todos from "./components/Todos";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+    const [todos,  setTodos] = useState([])
+
+    return (
+        <View style={styles.view}>
+            <Navbar/>
+            <Form setTodos={setTodos}/>
+            <Todos
+                todos={todos}
+                setTodos={setTodos}
+            />
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    view: {
+        flex: 1,
+        backgroundColor: "rgba(49,49,49,0.9)",
+    }
+})
