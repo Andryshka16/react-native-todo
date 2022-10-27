@@ -1,6 +1,6 @@
 
 import React from "react";
-import {Text, View, StyleSheet, Button, ScrollView} from "react-native";
+import {Text, View, StyleSheet, Button, FlatList} from "react-native";
 
 function Todo({title, date, removeTodo}){
 
@@ -21,18 +21,17 @@ function Todo({title, date, removeTodo}){
 export default function Todos({todos, setTodos}){
 
     function removeTodo(index){
-        setTodos(prev=>prev.filter((elm, idx)=>idx!==index))
+        setTodos(prev=>prev.filter((elm, idx)=>idx !== index))
     }
 
-    return <ScrollView>
-        {todos.map((todo, index)=>
-            <Todo
-                key={todo.date.getTime()}
+    return <FlatList
+        data={todos}
+        renderItem={({item: todo, index})=> <Todo
                 removeTodo={() => removeTodo(index)}
                 {...todo}
-            />
-        )}
-    </ScrollView>
+            />}
+        keyExtractor={item => item.date.getTime().toString()}
+    />
 
 }
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View,} from 'react-native';
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
 import {useState} from "react";
